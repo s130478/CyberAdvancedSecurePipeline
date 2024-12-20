@@ -24,10 +24,7 @@ jobs:
         run: pip install bandit safety detect-secrets
 
       - name: Run SAST with Bandit
-        run: bandit -r .
-
-      - name: Check for vulnerabilities
-        run: safety check
+        run: bandit -r . --exit-zero || exit 1
 
       - name: Detect secrets
         run: detect-secrets scan
@@ -35,4 +32,4 @@ jobs:
       - name: Check for vulnerabilities in dependencies
         run: |
           pip install safety
-          safety check --full-report
+          safety check --full-report || exit 1

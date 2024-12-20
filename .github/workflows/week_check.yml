@@ -24,6 +24,9 @@ jobs:
 
       - name: Run SAST with Bandit
         run: bandit -r .
+
+      - name: Detect secrets
+        run: detect-secrets scan
       
       - name: Check for vulnerabilities in dependencies
         run: |
