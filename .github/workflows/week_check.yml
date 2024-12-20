@@ -1,3 +1,4 @@
+#WEEK_CHECK
 name: Weekly Code Scan
 
 on:
@@ -23,3 +24,8 @@ jobs:
 
       - name: Run SAST with Bandit
         run: bandit -r .
+      
+      - name: Check for vulnerabilities in dependencies
+        run: |
+          pip install safety
+          safety check --full-report
