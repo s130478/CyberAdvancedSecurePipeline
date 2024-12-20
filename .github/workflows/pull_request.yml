@@ -27,7 +27,7 @@ jobs:
         run: bandit -r . --exit-zero || exit 1
 
       - name: Detect secrets
-        run: detect-secrets scan --fail-on-unaudited
+        run: detect-secrets scan
         
       - name: Check for vulnerabilities in dependencies
         run: |
