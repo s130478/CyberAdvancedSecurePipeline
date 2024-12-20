@@ -1,0 +1,25 @@
+name: Weekly Code Scan
+
+on:
+  schedule:
+    - cron: '0 0 * * 0'  # Elke zondag om 00:00
+
+jobs:
+  weekly-scan:
+    name: Weekly SAST Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install bandit
+
+      - name: Run SAST with Bandit
+        run: bandit -r .
